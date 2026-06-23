@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통영시 관광 데이터 대시보드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<div class="container mx-auto px-4 py-8">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-slate-900">통영시 관광객 유입 패턴 및 운영 효율성 분석</h1>
+        <p class="text-slate-500">2026. 04. 기준 데이터 기반 운영 인사이트</p>
+    </header>
+
+    <!-- Key Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase">최대 피크 일일 유입</h3>
+            <p class="text-3xl font-bold text-blue-600 mt-2">707명</p>
+            <p class="text-xs text-slate-400 mt-1">2025.08.16 (광복절 연휴)</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase">전년 대비 동계 성장률</h3>
+            <p class="text-3xl font-bold text-emerald-600 mt-2">약 100%</p>
+            <p class="text-xs text-slate-400 mt-1">2025.01 vs 2026.01 비교</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase">수요 변동성 (피크/최저)</h3>
+            <p class="text-3xl font-bold text-amber-600 mt-2">15.7배</p>
+            <p class="text-xs text-slate-400 mt-1">가변형 인력 운영 필요성</p>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h2 class="text-lg font-bold mb-4">월별 유입 추이 분석</h2>
+            <canvas id="monthlyTrendChart"></canvas>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h2 class="text-lg font-bold mb-4">운영 효율성 제언</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm font-bold mr-3">제언 1</span>
+                    <p class="text-sm">휴관일 유연화: 공휴일 정상 운영 및 비수기 평일 휴관 순연</p>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-sm font-bold mr-3">제언 2</span>
+                    <p class="text-sm">가변 인력 매뉴얼: 700명 이상 피크 대비 탄력적 인력 배치</p>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-sm font-bold mr-3">제언 3</span>
+                    <p class="text-sm">타겟 마케팅: 4월 청소년 단체 및 가족 패키지 상품 개발</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Monthly Trend Chart
+    const ctx = document.getElementById('monthlyTrendChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['1월', '3월', '5월', '7월', '8월', '10월', '12월'],
+            datasets: [{
+                label: '방문객 수 (명)',
+                data: [180, 250, 450, 600, 707, 400, 200],
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+</script>
+
+</body>
+</html>
